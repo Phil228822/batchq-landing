@@ -549,25 +549,41 @@
     function closeModalOutside(e) {
       if (e.target === document.getElementById('access-modal')) closeModal();
     }
-    function submitForm(e) {
+    async function submitForm(e) {
       e.preventDefault();
-      const f = e.target;
-      const first    = f.first.value.trim();
-      const last     = f.last.value.trim();
-      const email    = f.email.value.trim();
-      const category = f.category.value;
-      const message  = f.message.value.trim();
+      const f      = e.target;
+      const submit = f.querySelector('[type=submit]');
+      submit.disabled = true;
+      submit.textContent = 'SENDING...';
 
-      const subject = encodeURIComponent('BatchQ Access Request: ' + first + ' ' + last);
-      const body    = encodeURIComponent(
-        'Name: ' + first + ' ' + last + '\n' +
-        'Email: ' + email + '\n' +
-        'Category: ' + (category || 'Not specified') + '\n\n' +
-        (message || '(no additional message)')
-      );
+      const body = {
+        first:    f.first.value.trim(),
+        last:     f.last.value.trim(),
+        email:    f.email.value.trim(),
+        category: f.category.value,
+        message:  f.message.value.trim(),
+      };
 
-      window.location.href = 'mailto:mophcrypto@gmail.com?subject=' + subject + '&body=' + body;
-      closeModal();
+      try {
+        const res = await fetch('/api/contact', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (data.ok) {
+          submit.textContent = 'SENT!';
+          submit.style.background = '#22c55e';
+          setTimeout(() => closeModal(), 1500);
+          f.reset();
+        } else {
+          throw new Error(data.error || 'Something went wrong.');
+        }
+      } catch(err) {
+        submit.disabled = false;
+        submit.textContent = 'SEND REQUEST';
+        alert('Error: ' + err.message);
+      }
     }
   </script>
 
