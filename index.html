@@ -245,6 +245,47 @@
     }
     footer .logo { color: var(--text); font-weight: 900; }
     footer .logo span { color: var(--purple); }
+
+    /* ── PHONE DEMO ── */
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 64px;
+    }
+    .phone-frame {
+      position: relative;
+      width: 260px;
+      border-radius: 44px;
+      background: #0d0d0f;
+      border: 2px solid rgba(255,255,255,0.12);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.05),
+        0 40px 80px rgba(0,0,0,0.7),
+        0 0 60px rgba(99,102,241,0.15);
+      padding: 14px 10px;
+      overflow: hidden;
+    }
+    .phone-notch {
+      width: 80px;
+      height: 22px;
+      background: #0d0d0f;
+      border-radius: 0 0 16px 16px;
+      margin: 0 auto 8px;
+      position: relative;
+      z-index: 2;
+    }
+    .phone-screen {
+      border-radius: 30px;
+      overflow: hidden;
+      background: #000;
+      aspect-ratio: 9/19.5;
+    }
+    .phone-screen video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -261,6 +302,18 @@
     <div class="cta-row">
       <a href="mailto:hello@batchq.app" class="btn-primary">REQUEST ACCESS</a>
       <a href="#how-it-works" class="btn-ghost">SEE HOW IT WORKS</a>
+    </div>
+
+    <!-- Phone demo -->
+    <div class="phone-wrap">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <video autoplay muted loop playsinline preload="auto">
+            <source src="/assets/demo.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
     </div>
   </section>
 
