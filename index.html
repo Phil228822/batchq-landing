@@ -246,6 +246,19 @@
     footer .logo { color: var(--text); font-weight: 900; }
     footer .logo span { color: var(--purple); }
 
+    /* ── DOT CANVAS ── */
+    #dot-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    nav, .hero, .stats, .section, .features, footer, .modal-overlay {
+      position: relative;
+      z-index: 1;
+    }
+
     /* ── PHONE DEMO ── */
     .phone-wrap {
       display: flex;
@@ -382,6 +395,8 @@
   </style>
 </head>
 <body>
+
+  <canvas id="dot-canvas"></canvas>
 
   <nav>
     <div class="nav-logo">BATCH<span>Q</span></div>
@@ -585,6 +600,75 @@
         alert('Error: ' + err.message);
       }
     }
+  </script>
+
+  <script>
+    (function() {
+      var canvas = document.getElementById('dot-canvas');
+      var ctx = canvas.getContext('2d');
+      var dots = [];
+      var mouse = { x: -2000, y: -2000 };
+      var spacing = 22;
+      var mouseRadius = 180;
+      var friction = 0.97;
+      var spring = 0.003;
+
+      function initDots() {
+        canvas.width = window.innerWidth;
+        canvas.height = document.documentElement.scrollHeight;
+        dots = [];
+        for (var x = spacing / 2; x < canvas.width; x += spacing) {
+          for (var y = spacing / 2; y < canvas.height; y += spacing) {
+            dots.push({ baseX: x, baseY: y, x: x, y: y, vx: 0, vy: 0 });
+          }
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var mx = mouse.x;
+        var my = mouse.y + window.scrollY;
+        for (var i = 0; i < dots.length; i++) {
+          var d = dots[i];
+          var dx = mx - d.x;
+          var dy = my - d.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouseRadius) {
+            var a = Math.atan2(dy, dx);
+            var f = (mouseRadius - dist) / mouseRadius;
+            var p = f * f * 1.5;
+            d.vx -= Math.cos(a) * p;
+            d.vy -= Math.sin(a) * p;
+          }
+          d.vx += (d.baseX - d.x) * spring;
+          d.vy += (d.baseY - d.y) * spring;
+          d.vx *= friction;
+          d.vy *= friction;
+          d.x += d.vx;
+          d.y += d.vy;
+          ctx.fillStyle = dist < mouseRadius
+            ? 'rgba(99,102,241,' + ((1 - dist / mouseRadius) * 0.5 + 0.12) + ')'
+            : 'rgba(71,85,105,0.2)';
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, 1.3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        requestAnimationFrame(animate);
+      }
+
+      document.addEventListener('mousemove', function(e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+      document.addEventListener('mouseleave', function() {
+        mouse.x = -2000;
+        mouse.y = -2000;
+      });
+
+      initDots();
+      animate();
+      window.addEventListener('resize', initDots);
+    })();
   </script>
 
 </body>
