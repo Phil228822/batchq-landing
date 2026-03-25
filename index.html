@@ -610,8 +610,8 @@
       var mouse = { x: -2000, y: -2000 };
       var spacing = 20;
       var mouseRadius = 150;
-      var friction = 0.97;
-      var spring = 0.003;
+      var friction = 0.7;
+      var spring = 0.15;
 
       function initDots() {
         canvas.width = window.innerWidth;
@@ -636,7 +636,7 @@
           if (dist < mouseRadius) {
             var a = Math.atan2(dy, dx);
             var f = (mouseRadius - dist) / mouseRadius;
-            var p = f * f * 1.5;
+            var p = f * f * 0.4;
             d.vx -= Math.cos(a) * p;
             d.vy -= Math.sin(a) * p;
           }
