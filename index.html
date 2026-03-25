@@ -608,14 +608,14 @@
       var ctx = canvas.getContext('2d');
       var dots = [];
       var mouse = { x: -2000, y: -2000 };
-      var spacing = 22;
-      var mouseRadius = 180;
+      var spacing = 20;
+      var mouseRadius = 150;
       var friction = 0.97;
       var spring = 0.003;
 
       function initDots() {
         canvas.width = window.innerWidth;
-        canvas.height = document.documentElement.scrollHeight;
+        canvas.height = window.innerHeight;
         dots = [];
         for (var x = spacing / 2; x < canvas.width; x += spacing) {
           for (var y = spacing / 2; y < canvas.height; y += spacing) {
@@ -627,7 +627,7 @@
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         var mx = mouse.x;
-        var my = mouse.y + window.scrollY;
+        var my = mouse.y;
         for (var i = 0; i < dots.length; i++) {
           var d = dots[i];
           var dx = mx - d.x;
@@ -647,8 +647,8 @@
           d.x += d.vx;
           d.y += d.vy;
           ctx.fillStyle = dist < mouseRadius
-            ? 'rgba(99,102,241,' + ((1 - dist / mouseRadius) * 0.5 + 0.12) + ')'
-            : 'rgba(71,85,105,0.2)';
+            ? 'rgba(125,211,252,' + ((1 - dist / mouseRadius) * 0.6 + 0.15) + ')'
+            : 'rgba(71,85,105,0.35)';
           ctx.beginPath();
           ctx.arc(d.x, d.y, 1.3, 0, Math.PI * 2);
           ctx.fill();
