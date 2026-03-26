@@ -609,7 +609,7 @@
       var dots = [];
       var mouse = { x: -2000, y: -2000 };
       var spacing = 20;
-      var mouseRadius = 150;
+      var mouseRadius = 200;
       var friction = 0.85;
       var spring = 0.08;
 
@@ -636,7 +636,7 @@
           if (dist < mouseRadius) {
             var a = Math.atan2(dy, dx);
             var f = (mouseRadius - dist) / mouseRadius;
-            var p = f * f * 0.8;
+            var p = f * f * 2.5;
             d.vx -= Math.cos(a) * p;
             d.vy -= Math.sin(a) * p;
           }
