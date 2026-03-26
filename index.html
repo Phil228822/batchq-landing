@@ -260,6 +260,16 @@
     footer .logo { color: var(--text); font-weight: 900; }
     footer .logo span { color: var(--purple); }
 
+    /* ── AURORA CANVAS ── */
+    #aurora-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
     /* ── DOT CANVAS ── */
     #dot-canvas {
       position: fixed;
@@ -411,6 +421,7 @@
 </head>
 <body>
 
+  <canvas id="aurora-canvas"></canvas>
   <canvas id="dot-canvas"></canvas>
 
   <nav>
@@ -698,6 +709,75 @@
       initDots();
       animate();
       window.addEventListener('resize', initDots);
+    })();
+  </script>
+
+  <!-- AURORA LIGHT -->
+  <script>
+    (function() {
+      var c = document.getElementById('aurora-canvas');
+      var ctx = c.getContext('2d');
+      var mx = -1000, my = -1000;
+      var smoothX = -1000, smoothY = -1000;
+
+      function resize() {
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+      }
+
+      function draw() {
+        // Smooth follow the mouse
+        smoothX += (mx - smoothX) * 0.05;
+        smoothY += (my - smoothY) * 0.05;
+
+        ctx.clearRect(0, 0, c.width, c.height);
+
+        // Main glow follows mouse — purple
+        var r1 = 350;
+        var g1 = ctx.createRadialGradient(smoothX, smoothY, 0, smoothX, smoothY, r1);
+        g1.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
+        g1.addColorStop(0.5, 'rgba(99, 102, 241, 0.1)');
+        g1.addColorStop(1, 'rgba(99, 102, 241, 0)');
+        ctx.fillStyle = g1;
+        ctx.fillRect(0, 0, c.width, c.height);
+
+        // Trailing glow — blue, lags behind more
+        var trailX = smoothX + (mx - smoothX) * -0.3;
+        var trailY = smoothY + (my - smoothY) * -0.3;
+        var r2 = 280;
+        var g2 = ctx.createRadialGradient(trailX, trailY, 0, trailX, trailY, r2);
+        g2.addColorStop(0, 'rgba(56, 189, 248, 0.2)');
+        g2.addColorStop(0.5, 'rgba(56, 189, 248, 0.06)');
+        g2.addColorStop(1, 'rgba(56, 189, 248, 0)');
+        ctx.fillStyle = g2;
+        ctx.fillRect(0, 0, c.width, c.height);
+
+        // Second trail — green, lags even more
+        var trail2X = smoothX + (mx - smoothX) * -0.6;
+        var trail2Y = smoothY + (my - smoothY) * -0.6;
+        var r3 = 220;
+        var g3 = ctx.createRadialGradient(trail2X, trail2Y, 0, trail2X, trail2Y, r3);
+        g3.addColorStop(0, 'rgba(74, 222, 128, 0.15)');
+        g3.addColorStop(0.5, 'rgba(74, 222, 128, 0.04)');
+        g3.addColorStop(1, 'rgba(74, 222, 128, 0)');
+        ctx.fillStyle = g3;
+        ctx.fillRect(0, 0, c.width, c.height);
+
+        requestAnimationFrame(draw);
+      }
+
+      document.addEventListener('mousemove', function(e) {
+        mx = e.clientX;
+        my = e.clientY;
+      });
+      document.addEventListener('mouseleave', function() {
+        mx = -1000;
+        my = -1000;
+      });
+
+      resize();
+      draw();
+      window.addEventListener('resize', resize);
     })();
   </script>
 
