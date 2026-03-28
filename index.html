@@ -417,6 +417,58 @@
       transition: opacity .2s;
     }
     .modal-submit:hover { opacity: .85; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      nav {
+        padding: 12px 16px;
+      }
+      .nav-logo { font-size: 16px; }
+      .nav-badge { font-size: 8px; padding: 3px 6px; letter-spacing: 1px; }
+      nav .btn-primary { padding: 6px 14px !important; font-size: 10px !important; }
+
+      .hero {
+        padding: 60px 20px 48px;
+      }
+      .hero-tag {
+        font-size: 9px;
+        letter-spacing: 2px;
+        padding: 5px 12px;
+        margin-bottom: 24px;
+      }
+      h1 {
+        font-size: clamp(32px, 9vw, 48px);
+        margin-bottom: 16px;
+      }
+      .hero-sub {
+        font-size: 15px;
+        margin-bottom: 32px;
+      }
+      .cta-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .cta-row .btn-primary,
+      .cta-row .btn-ghost {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+        padding: 12px 24px;
+        font-size: 13px;
+      }
+
+      .phone-wrap { margin-top: 48px; }
+      .phone-frame { width: 200px; }
+
+      .stats { gap: 24px; padding: 32px 20px; }
+      .stat-val { font-size: 28px; }
+
+      .section { padding: 48px 20px; }
+      .section-title { font-size: clamp(24px, 6vw, 36px); }
+
+      .modal-box { margin: 16px; padding: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -426,7 +478,10 @@
 
   <nav>
     <div class="nav-logo" id="nav-logo"><span class="logo-letter">B</span><span class="logo-letter">A</span><span class="logo-letter">T</span><span class="logo-letter">C</span><span class="logo-letter">H</span><span class="logo-letter q-letter">Q</span></div>
-    <div class="nav-badge">EARLY ACCESS</div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="nav-badge">EARLY ACCESS</div>
+      <a href="/login" class="btn-primary" style="padding:8px 20px;font-size:11px;text-decoration:none">LOG IN</a>
+    </div>
   </nav>
 
   <section class="hero">
