@@ -53,19 +53,22 @@
       color: var(--text);
     }
     .nav-logo .logo-letter {
+      display: inline-block;
       color: #7c3aed;
-      transition: color 0.3s, text-shadow 0.3s;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .nav-logo .logo-letter.lit {
-      color: var(--purple2);
-      text-shadow: 0 0 12px rgba(99,102,241,0.6), 0 0 24px rgba(99,102,241,0.3);
+      color: #60a5fa;
+      text-shadow: 0 0 15px #1e3a8a, 0 0 30px #60a5fa;
+      transform: translateY(-2px);
     }
     .nav-logo .logo-letter.q-letter {
       color: #fff;
     }
     .nav-logo .logo-letter.q-letter.lit {
       color: #e879f9;
-      text-shadow: 0 0 14px rgba(99,102,241,0.8), 0 0 28px rgba(99,102,241,0.4);
+      text-shadow: 0 0 8px #e879f9, 0 0 20px #d946ef, 0 0 40px #a855f7, 0 0 60px #7c3aed;
+      transform: translateY(-2px);
     }
     .nav-badge {
       font-family: var(--mono);
@@ -692,12 +695,10 @@
       var logos = document.querySelectorAll('.nav-logo');
       logos.forEach(function(logo) {
         var letters = logo.querySelectorAll('.logo-letter');
-        var idx = 0;
-        setInterval(function() {
-          letters.forEach(function(l) { l.classList.remove('lit'); });
-          letters[idx].classList.add('lit');
-          idx = (idx + 1) % letters.length;
-        }, 400);
+        letters.forEach(function(l) {
+          l.addEventListener('mouseenter', function() { l.classList.add('lit'); });
+          l.addEventListener('mouseleave', function() { l.classList.remove('lit'); });
+        });
       });
     })();
   </script>
