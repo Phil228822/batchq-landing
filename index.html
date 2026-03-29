@@ -6,6 +6,9 @@
   <meta name='impact-site-verification' value='350f025d-cd29-4bce-9f0e-d9cce3783143' />
   <title>BatchQ - Trading Card Listing Automation</title>
   <meta name="description" content="BatchQ automates trading card listings. Scan, price, and list cards in seconds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -43,13 +46,14 @@
       z-index: 10;
     }
     .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 22px;
       font-weight: 900;
-      letter-spacing: -1px;
+      letter-spacing: 0.14em;
       color: var(--text);
     }
     .nav-logo .logo-letter {
-      color: var(--text);
+      color: #7c3aed;
       transition: color 0.3s, text-shadow 0.3s;
     }
     .nav-logo .logo-letter.lit {
@@ -57,10 +61,10 @@
       text-shadow: 0 0 12px rgba(99,102,241,0.6), 0 0 24px rgba(99,102,241,0.3);
     }
     .nav-logo .logo-letter.q-letter {
-      color: var(--purple);
+      color: #fff;
     }
     .nav-logo .logo-letter.q-letter.lit {
-      color: #fff;
+      color: #e879f9;
       text-shadow: 0 0 14px rgba(99,102,241,0.8), 0 0 28px rgba(99,102,241,0.4);
     }
     .nav-badge {
@@ -477,7 +481,7 @@
   <canvas id="dot-canvas"></canvas>
 
   <nav>
-    <div class="nav-logo" id="nav-logo"><span class="logo-letter">B</span><span class="logo-letter">A</span><span class="logo-letter">T</span><span class="logo-letter">C</span><span class="logo-letter">H</span><span class="logo-letter q-letter">Q</span></div>
+    <div class="nav-logo" id="nav-logo"><span class="logo-letter">B</span><span class="logo-letter">A</span><span class="logo-letter">T</span><span class="logo-letter">C</span><span class="logo-letter">H</span><span class="logo-letter q-letter">_Q</span></div>
     <div style="display:flex;align-items:center;gap:12px">
       <div class="nav-badge">EARLY ACCESS</div>
       <a href="/login" class="btn-primary" style="padding:8px 20px;font-size:11px;text-decoration:none">LOG IN</a>
@@ -629,7 +633,7 @@
   </section>
 
   <footer>
-    <div class="nav-logo" id="footer-logo"><span class="logo-letter">B</span><span class="logo-letter">A</span><span class="logo-letter">T</span><span class="logo-letter">C</span><span class="logo-letter">H</span><span class="logo-letter q-letter">Q</span></div>
+    <div class="nav-logo" id="footer-logo"><span class="logo-letter">B</span><span class="logo-letter">A</span><span class="logo-letter">T</span><span class="logo-letter">C</span><span class="logo-letter">H</span><span class="logo-letter q-letter">_Q</span></div>
     <div style="margin-top:12px">© 2026 BatchQ · batchq.app · All rights reserved</div>
   </footer>
 
