@@ -295,6 +295,88 @@
       line-height: 1.6;
     }
 
+    /* ── ABOUT ── */
+    .about {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 36px;
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+    }
+    .about-avatar {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+    }
+    .about-body { flex: 1; }
+    .about-name {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .about-handle {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--purple2);
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+    .about-handle a {
+      color: var(--purple2);
+      text-decoration: none;
+    }
+    .about-handle a:hover { text-decoration: underline; }
+    .about-text {
+      font-size: 15px;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .about-stats {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .about-stat {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--text);
+      background: rgba(99,102,241,.1);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+    }
+    .about-stat strong {
+      color: var(--green);
+      font-weight: 700;
+    }
+    @media (max-width: 600px) {
+      .about { padding: 48px 20px; }
+      .about-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 32px 24px;
+      }
+      .about-stats { justify-content: center; }
+    }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -690,6 +772,25 @@
         <div class="feature-card">
           <div class="feature-title">Keeps a record of everything</div>
           <div class="feature-desc">Every listing you've ever sent through BatchQ is saved with its photo, price, and link. Easy to look back on.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about">
+      <div class="section-label">WHO BUILT THIS</div>
+      <div class="about-card">
+        <div class="about-avatar">P</div>
+        <div class="about-body">
+          <div class="about-name">Phil</div>
+          <div class="about-handle"><a href="https://www.ebay.com/str/twenty2sports" target="_blank" rel="noopener">Twenty2 Cards on eBay</a></div>
+          <div class="about-text">I built BatchQ because I got tired of spending more time listing cards than actually finding them. I sell on eBay every day and got sick of typing the same stuff over and over, looking up comps manually, and formatting titles by hand. So I built the tool I wanted. Every feature in BatchQ comes from real problems I hit while listing my own inventory.</div>
+          <div class="about-stats">
+            <div class="about-stat"><strong>100%</strong> positive feedback</div>
+            <div class="about-stat"><strong>1.5K+</strong> items sold</div>
+            <div class="about-stat"><strong>Active</strong> daily seller</div>
+          </div>
         </div>
       </div>
     </div>
